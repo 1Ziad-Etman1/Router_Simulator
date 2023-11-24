@@ -1,0 +1,14 @@
+- Connection C2: tablet Occupied
+- Connection C3: pc login
+- Connection C1: mobile Occupied
+- Connection C4: pc login
+- Connection C3: pc performs online activity
+- Connection C2: tablet login
+- Connection C1: mobile login
+- Connection C4: pc performs online activity
+- Connection C2: tablet performs online activity
+- Connection C1: mobile performs online activity
+- (C3)(pc) arrived and waiting
+- (C4)(pc) arrived and waiting
+- (C2)(tablet) arrived and waiting
+- (C1)(mobile) arrived and waiting

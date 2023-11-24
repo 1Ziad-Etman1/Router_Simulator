@@ -1,3 +1,6 @@
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Network {
@@ -21,7 +24,17 @@ public class Network {
             device.start();
         }
 
+
+
         scanner.close();
+
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream("output.txt");
+            PrintStream printStream = new PrintStream(fileOutputStream);
+            System.setOut(printStream);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 
