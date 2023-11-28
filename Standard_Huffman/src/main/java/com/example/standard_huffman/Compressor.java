@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 
+//todo 1100111100101010011011110110010010
+
 // Class for Huffman compression
 public class Compressor {
 
@@ -17,16 +19,32 @@ public class Compressor {
 
         StringBuilder compressed = new StringBuilder();
 
+        // Append codebook to the compressed string
         for (Map.Entry<Character, String> entry : encodingMap.entrySet()) {
-            compressed.append(entry.getKey()).append(entry.getValue());
+            compressed.append(charToBinaryAscii(entry.getKey())).append(entry.getValue()).append('\n');
         }
-        compressed.append('\n');
 
+        // Append compressed data to the string
         for (char c : input.toCharArray()) {
             compressed.append(encodingMap.get(c));
         }
 
         return compressed.toString();
+    }
+
+    public String charToBinaryAscii(char character) {
+        // Convert the character to its ASCII value
+        int asciiValue = (int) character;
+
+        // Convert the ASCII value to an 8-bit binary string
+        String binaryString = Integer.toBinaryString(asciiValue);
+
+        // Pad with leading zeros if needed to make it 8 bits
+        while (binaryString.length() < 8) {
+            binaryString = "0" + binaryString;
+        }
+
+        return binaryString;
     }
 
     private Map<Character, Integer> buildFrequencyMap(String input) {

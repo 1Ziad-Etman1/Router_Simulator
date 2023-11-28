@@ -98,7 +98,7 @@ public class HelloApplication extends Application {
         );
         compressButton.setOnAction(event -> {
             String inputFileName = fileLabel2.getText();
-            String compressedFileName = "compressed.bin";
+            // Perform compression
             Compressor compressor = new Compressor();
             String compressedString = null;
             try {
@@ -107,11 +107,15 @@ public class HelloApplication extends Application {
                 throw new RuntimeException(e);
             }
 
-            // Output the compressed string (as binary) to the console
+            // Output the compressed string (as binary) to the console for debugging
             System.out.println("Compressed String (Binary):");
             System.out.println(compressedString);
-            // Perform compression and save the result to a binary file
-            HuffmanFileHandler.compressToFile(fileLabel2.getText(), "/run/media/phantom/New Volume/University/OS/Assignments/Router_Simulator/Standard_Huffman/src/main/resources/com/example/standard_huffman/compressed.bin");
+
+            // Specify output file name for the compressed data
+            String compressedFileName = "/run/media/phantom/New Volume/University/OS/Assignments/Router_Simulator/Standard_Huffman/src/main/resources/com/example/standard_huffman/compressed.txt";
+
+            // Save the compressed string to a binary file
+            HuffmanFileHandler.compressToFile(inputFileName,compressedFileName);
 
             System.out.println("Compression complete. Compressed file saved to: " + compressedFileName);
 
@@ -129,20 +133,20 @@ public class HelloApplication extends Application {
             String compressedFileName = fileLabel2.getText();
             String decompressedFileName = "/run/media/phantom/New Volume/University/OS/Assignments/Router_Simulator/Standard_Huffman/src/main/resources/com/example/standard_huffman/decompressed.txt";
 
-            BitSet compressedBitSet = null;
-            try {
-                compressedBitSet = HuffmanFileHandler.readBitSetFromFile(compressedFileName);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            String compressedString = HuffmanFileHandler.bitSetToString(compressedBitSet);
+//            BitSet compressedBitSet = null;
+//            try {
+//                compressedBitSet = HuffmanFileHandler.readBitSetFromFile(compressedFileName);
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+            //String compressedString = HuffmanFileHandler.bitSetToString(compressedBitSet);
 
             DeCompressor deCompressor = new DeCompressor();
-            String decompressedString = deCompressor.decompress(compressedString);
+            //String decompressedString = deCompressor.decompress(compressedString);
 
             // Output the decompressed string to the console
-            System.out.println("Decompressed String:");
-            System.out.println(decompressedString);
+            //System.out.println("Decompressed String:");
+            //System.out.println(decompressedString);
             // Perform decompression and save the result to a text file
             HuffmanFileHandler.decompressToFile(compressedFileName, decompressedFileName);
 

@@ -12,8 +12,7 @@ public class HuffmanFileHandler {
             String input = readTextFile(inputFileName);
             Compressor compressor = new Compressor();
             String compressed = compressor.compress(input);
-            BitSet bitSet = stringToBitSet(compressed);
-            writeBitSetToFile(bitSet, outputFileName);
+            writeTextFile(compressed, outputFileName);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -22,8 +21,7 @@ public class HuffmanFileHandler {
     // Method to decompress a binary file and save the decompressed data to a text file
     public static void decompressToFile(String inputFileName, String outputFileName) {
         try {
-            BitSet bitSet = readBitSetFromFile(inputFileName);
-            String compressed = bitSetToString(bitSet);
+            String compressed = readTextFile(inputFileName);
             DeCompressor deCompressor = new DeCompressor();
             String decompressed = deCompressor.decompress(compressed);
             writeTextFile(decompressed, outputFileName);
@@ -59,14 +57,14 @@ public class HuffmanFileHandler {
         }
     }
 
-    private static void writeBitSetToFile(BitSet bitSet, String fileName) throws IOException {
+    public static void writeBitSetToFile(BitSet bitSet, String fileName) throws IOException {
         try (FileOutputStream fos = new FileOutputStream(fileName);
              ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(bitSet);
         }
     }
 
-    private static BitSet stringToBitSet(String input) {
+    public static BitSet stringToBitSet(String input) {
         BitSet bitSet = new BitSet(input.length());
         for (int i = 0; i < input.length(); i++) {
             if (input.charAt(i) == '1') {
